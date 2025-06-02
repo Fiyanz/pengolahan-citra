@@ -35,6 +35,8 @@ def main_matriks():
              [7, 0, 1, 0, 2, 2],
              [3, 0, 1, 0, 4, 2],
              [6, 6, 3, 6, 1, 2]]
+    
+    
 
     frequency = get_frequency2d(array)
     histogram_result = histogram(frequency, (8*8))

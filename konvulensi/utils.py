@@ -13,7 +13,7 @@ def add_padding(matrix, padding):
         return matrix
 
     # menambahkkan 0 disetiap sisi matriks
-    return np.pad(matrix, ((padding, padding), (padding, padding)), mode='constant', constant_values=0)
+    return np.pad(matrix, ((0, padding), (0, padding)), mode='constant', constant_values=0)
 
 # mengubah matriks menjadi biner dengan treshold
 def to_binary(matrix, threshold):
@@ -23,7 +23,7 @@ def to_binary(matrix, threshold):
     :param threshold: treshold yang akan digunakan
     :return: matriks biner
     """
-    return np.where(matrix > threshold, 1, 0)
+    return np.where(matrix >= threshold, 1, 0)
 
 # median filter
 
@@ -32,3 +32,5 @@ def median_fil(matrix, size=3, padding='constant'):
         raise ValueError("Ukuran jendela median harus ganjil.")
     matrix_np = np.array(matrix)
     return median_filter(matrix_np, size=size, mode=padding)
+
+

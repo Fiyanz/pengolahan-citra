@@ -1,10 +1,10 @@
 import numpy as np
-from konvulensi import konvolusi
-from utils import to_binary, median_fil
+from konvulensi import konvolusi, konvolusi_2x2
+from utils import to_binary, median_fil, add_padding
 from kernel import Kernel
 
 # Menghitung prewitt dari matriks
-def prewitt(matrix, kernel):
+def prewitt(matrix, kernel, treshold):
     """
     Menghitung prewitt dari matriks
     :param matrix: matriks yang akan dihitung prewitt
@@ -19,7 +19,8 @@ def prewitt(matrix, kernel):
     gy = konvolusi(matrix, kernel.T, padding=1)
 
     prewit = abs(gx) + abs(gy)
-    prewit = to_binary(prewit, 100)
+    # print(prewit)
+    prewit = to_binary(prewit, treshold)
     print(prewit)
 
 # mean filter
@@ -37,30 +38,42 @@ def mean_filter(matrix, kernel):
     mean = konvolusi(matrix, kernel, padding=1)
     mean = mean / 9
     # short 
-    return mean
+    print(mean)
+
+# deteksi tepi roberts 
+def roberts(matrix, kernelx=None, kernely=None, treshold=0):
+
+    gx = konvolusi(matrix, kernelx)
+    gy = konvolusi(matrix, kernely)
+
+    result = abs(gx) + abs(gy)
+    result = to_binary(result, treshold)
+    print(result)
 
 
 
 if __name__ == "__main__":
-    matrix1 = [
-        [42, 42, 30, 31, 35, 43],
-        [25, 11, 3,  31, 42, 33],
-        [54, 30, 12, 61, 37, 42],
-        [32, 56, 29, 30, 17, 20],
-        [48, 39, 53, 22, 19, 23],
-        [23, 20, 31, 60, 30, 37]
+
+    array = [
+        [219,  99,  15,  27,  87,  57, 142,  98, 126],
+        [184, 103, 188, 137,  63, 241,  63,  51, 198],
+        [109, 133, 227, 229, 214, 222,  14,  20,  95],
+        [224, 203, 200,  96, 145,  81, 224, 147, 143],
+        [181,  20, 157, 251, 133, 201, 247, 164, 230],
+        [145,  99, 205,  78, 231, 137,  55,  74,  90],
+        [207, 184, 209,  99, 196, 189, 174, 195, 135],
+        [ 13, 137,  24, 235, 178, 142, 123, 254, 102],
+        [181, 162, 209, 102, 120,  12, 178, 216,  89]
     ]
 
-    matrix2 = [
-            [196,  54,  18, 176, 195,  44],
-            [ 29, 212, 133,  40, 129, 239],
-            [182, 247,  46, 153, 254,  33],
-            [  5, 161, 167, 198,   0,  96],
-            [216,  21, 124,  54,  18, 254],
-            [244,  41,  94, 175,  25,  75]
-        ]
+    print(array[3][2])
 
-    print("Median Filter")
-    print(median_fil(matrix=matrix2, padding='constant'))
-    print("Prewitt")
-    print(prewitt(matrix1, Kernel.PREWITT))
+    # print("Median Filter")
+    # print(median_fil(matrix=array, padding='constant'))
+    # print("Prewitt")
+    # prewitt(array, Kernel.PREWITT, 130)
+    # # print("Roberts")
+    # # roberts(array, Kernel.ROBERTS_X, Kernel.ROBERTS_Y)
+    # print("roberts biner")
+    # print(roberts(array, Kernel.ROBERTS_X, Kernel.ROBERTS_Y, 130))
+
