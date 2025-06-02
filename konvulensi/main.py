@@ -1,6 +1,6 @@
 import numpy as np
 from konvulensi import konvolusi, konvolusi_2x2
-from utils import to_binary, median_fil, add_padding
+from utils import to_binary, median_fil, add_padding, citra_negative
 from kernel import Kernel
 
 # Menghitung prewitt dari matriks
@@ -67,6 +67,7 @@ if __name__ == "__main__":
     ]
 
     print(array[3][2])
+    print(citra_negative(array))
 
     # print("Median Filter")
     # print(median_fil(matrix=array, padding='constant'))

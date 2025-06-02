@@ -33,4 +33,11 @@ def median_fil(matrix, size=3, padding='constant'):
     matrix_np = np.array(matrix)
     return median_filter(matrix_np, size=size, mode=padding)
 
+def citra_negative(matrix, max=255):
+    negative = []
+    for row in matrix:
+        result = [(max - elemen) for elemen in row] 
+        negative.append(result)
+
+    return np.array(negative)
 
