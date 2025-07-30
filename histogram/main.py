@@ -22,25 +22,25 @@ def main_histtogram():
     result_histogram_rgb = histogram_rgb(img_rgb)
     plot_historgam_rgb(result_histogram_rgb, img_rgb)
 
-def main_gui():
-    # gui
-    root = tk.Tk()
-    app = ImageHistogramApp(root)
-    root.mainloop()
+# def main_gui():
+#     # gui
+#     root = tk.Tk()
+#     app = ImageHistogramApp(root)
+#     root.mainloop()
 
-def main_matriks():
-    array = [[6, 6, 2, 2, 7, 7],
-             [6, 6, 5, 5, 7, 6],
-             [6, 0, 1, 1, 7, 6],
-             [7, 0, 1, 0, 2, 2],
-             [3, 0, 1, 0, 4, 2],
-             [6, 6, 3, 6, 1, 2]]
+# def main_matriks():
+#     array = [[6, 6, 2, 2, 7, 7],
+#              [6, 6, 5, 5, 7, 6],
+#              [6, 0, 1, 1, 7, 6],
+#              [7, 0, 1, 0, 2, 2],
+#              [3, 0, 1, 0, 4, 2],
+#              [6, 6, 3, 6, 1, 2]]
     
     
 
-    frequency = get_frequency2d(array)
-    histogram_result = histogram(frequency, (8*8))
-    print(histogram_result)
+    # frequency = get_frequency2d(array)
+    # histogram_result = histogram(frequency, (8*8))
+    # print(histogram_result)
 
 if __name__ == '__main__':
     main_histtogram()
